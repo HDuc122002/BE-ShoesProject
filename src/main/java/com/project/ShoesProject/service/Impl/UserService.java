@@ -3,6 +3,7 @@ package com.project.ShoesProject.service.Impl;
 import com.project.ShoesProject.dto.UserDTO;
 import com.project.ShoesProject.entity.User;
 import com.project.ShoesProject.exception.DataNotFoundException;
+import com.project.ShoesProject.exception.InvalidParamException;
 import com.project.ShoesProject.repository.UserRepository;
 import com.project.ShoesProject.security.JwtTokenUtil;
 import com.project.ShoesProject.service.IUserService;
@@ -15,14 +16,15 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class UserService implements IUserService {
+public class
+UserService implements IUserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     private final JwtTokenUtil jwtTokenUtil;
 
     @Override
-    public User register(UserDTO userDTO) throws DataNotFoundException {
+    public User register(UserDTO userDTO) throws Exception {
         String phoneNumber = userDTO.getPhoneNumber();
         if (userRepository.existsByPhoneNumber(phoneNumber)) {
             throw new DataIntegrityViolationException("Phone number already exists");
@@ -37,6 +39,9 @@ public class UserService implements IUserService {
                 .googleAccountId(userDTO.getGoogleAccountId())
                 .role(userDTO.getRole())
                 .build();
+        if (!userDTO.getPassword().equals(userDTO.getRetypePassword())){
+            throw new InvalidParamException("Wrong retype password");
+        }
         return userRepository.save(newUser);
     }
 

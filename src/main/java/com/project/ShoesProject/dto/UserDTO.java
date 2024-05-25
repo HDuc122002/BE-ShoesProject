@@ -15,8 +15,9 @@ import java.util.Date;
 @Setter
 public class UserDTO {
     @JsonProperty("full_name")
+    @NotBlank(message = "full name is required!")
     private String fullName;
-
+    @NotBlank(message = "phone number is required!")
     @JsonProperty("phone_number")
 //    @NotBlank(message = "Phone number is required")
     private String phoneNumber;
@@ -27,12 +28,12 @@ public class UserDTO {
     @NotBlank(message = "Password cannot be blank")
     @JsonProperty("password")
     private String password;
-
+    @NotBlank(message = "Retype password is required!")
     @JsonProperty("retype_password")
     private String retypePassword;
 
     @JsonProperty("date_of_birth")
-    private Date dateOfBirth;
+    private String dateOfBirth;
 
     @JsonProperty("facebook_account_id")
     private Long facebookAccountId;
@@ -40,7 +41,7 @@ public class UserDTO {
     @JsonProperty("google_account_id")
     private Long googleAccountId;
 
-//    @NotNull(message = "Role ID is required")
+    @NotNull(message = "Role is required")
     @JsonProperty("role")
     private Role role;
 }
