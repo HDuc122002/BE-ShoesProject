@@ -7,7 +7,6 @@ import com.project.ShoesProject.entity.User;
 import com.project.ShoesProject.exception.DataNotFoundException;
 import com.project.ShoesProject.repository.OrderRepository;
 import com.project.ShoesProject.repository.UserRepository;
-import com.project.ShoesProject.response.OrderResponse;
 import com.project.ShoesProject.service.IOrderService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;

@@ -1,6 +1,5 @@
 package com.project.ShoesProject.controller;
 
-import com.github.javafaker.Faker;
 import com.project.ShoesProject.dto.ProductDTO;
 import com.project.ShoesProject.entity.Product;
 import com.project.ShoesProject.exception.DataNotFoundException;

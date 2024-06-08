@@ -3,7 +3,6 @@ package com.project.ShoesProject.service;
 import com.project.ShoesProject.dto.OrderDTO;
 import com.project.ShoesProject.entity.Order;
 import com.project.ShoesProject.exception.DataNotFoundException;
-import com.project.ShoesProject.response.OrderResponse;
 
 import java.util.List;
 

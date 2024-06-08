@@ -2,10 +2,8 @@ package com.project.ShoesProject.controller;
 
 import com.project.ShoesProject.dto.OrderDTO;
 import com.project.ShoesProject.entity.Order;
-import com.project.ShoesProject.response.OrderResponse;
 import com.project.ShoesProject.service.Impl.OrderService;
 import lombok.RequiredArgsConstructor;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

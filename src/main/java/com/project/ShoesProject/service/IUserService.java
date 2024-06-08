@@ -7,4 +7,5 @@ import com.project.ShoesProject.exception.DataNotFoundException;
 public interface IUserService {
     User register(UserDTO userDTO) throws DataNotFoundException, Exception;
     String login(String phoneNumber, String password) throws Exception;
+    String refreshToken(UserDTO userDTO) throws Exception;
 }

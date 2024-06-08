@@ -37,7 +37,8 @@ public class WebSecurityConfig {
                         request -> {
                             request.requestMatchers(
                                     String.format("%s/users/register",apiPrefix),
-                                    String.format("%s/users/login",apiPrefix)
+                                    String.format("%s/users/login",apiPrefix),
+                                    String.format("%s/users/refreshToken",apiPrefix)
                             )
                                     .permitAll()
                                     //request products

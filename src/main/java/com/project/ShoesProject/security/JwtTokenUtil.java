@@ -20,7 +20,7 @@ public class JwtTokenUtil {
     @Value("${jwt.secretKey}")
     private String secretKey;
     @Value("${jwt.expiration}")
-    private int expiration;
+    private long expiration;
 
     private Claims extractAllClaims(String token){
         return Jwts
@@ -53,12 +53,20 @@ public class JwtTokenUtil {
         return extractClaims(token, Claims::getExpiration);
     }
 
-    public String generateToken(User user){
+    public String generateAccessToken(User user){
+        return generateToken(user,expiration);
+    }
+
+    public String generateRefreshToken(User user){
+        return generateToken(user,expiration);
+    }
+
+    public String generateToken(User user,long expiration){
         String token = Jwts
                 .builder()
                 .subject(user.getPhoneNumber())
                 .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis() + expiration * 1000L))
+                .expiration(new Date(System.currentTimeMillis() + expiration * 1000))
                 .signWith(getSigningKey())
                 .compact();
 

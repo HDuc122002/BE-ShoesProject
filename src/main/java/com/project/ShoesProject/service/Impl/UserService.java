@@ -6,11 +6,13 @@ import com.project.ShoesProject.exception.DataNotFoundException;
 import com.project.ShoesProject.exception.InvalidParamException;
 import com.project.ShoesProject.repository.UserRepository;
 import com.project.ShoesProject.security.JwtTokenUtil;
+import com.project.ShoesProject.security.UserDetailsServiceImpl;
 import com.project.ShoesProject.service.IUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,7 @@ UserService implements IUserService {
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     private final JwtTokenUtil jwtTokenUtil;
+    private final UserDetailsServiceImpl userDetailsService;
 
     @Override
     public User register(UserDTO userDTO) throws Exception {
@@ -54,7 +57,15 @@ UserService implements IUserService {
             phoneNumber,password
             )
         );
-        String token = jwtTokenUtil.generateToken(user);
+        String token = jwtTokenUtil.generateAccessToken(user);
+        return token;
+    }
+
+    @Override
+    public String refreshToken(UserDTO userDTO) throws Exception {
+        User user = userRepository.findByPhoneNumber(userDTO.getPhoneNumber())
+                .orElseThrow(() -> new DataNotFoundException("User not found"));
+        String token = jwtTokenUtil.generateRefreshToken(user);
         return token;
     }
 }

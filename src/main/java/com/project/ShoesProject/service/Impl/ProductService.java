@@ -6,13 +6,11 @@ import com.project.ShoesProject.entity.Product;
 import com.project.ShoesProject.exception.DataNotFoundException;
 import com.project.ShoesProject.repository.CategoryRepository;
 import com.project.ShoesProject.repository.ProductRepository;
-import com.project.ShoesProject.response.ProductListResponse;
 import com.project.ShoesProject.response.ProductResponse;
 import com.project.ShoesProject.service.IProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
