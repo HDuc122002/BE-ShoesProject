@@ -1,12 +1,18 @@
 package com.project.ShoesProject.controller;
 
 import com.project.ShoesProject.dto.UserDTO;
+<<<<<<< HEAD
 import com.project.ShoesProject.dto.UserLoginDTO;
 import com.project.ShoesProject.entity.User;
 import com.project.ShoesProject.response.LoginResponse;
 import com.project.ShoesProject.service.Impl.UserService;
 import com.project.ShoesProject.utils.LocalizationUtils;
 import com.project.ShoesProject.utils.MessageKeys;
+=======
+import com.project.ShoesProject.entity.User;
+import com.project.ShoesProject.repository.UserRepository;
+import com.project.ShoesProject.service.Impl.UserService;
+>>>>>>> dffb0e7f4cd30063576ab2b31b7505d9bef91f13
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +22,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> dffb0e7f4cd30063576ab2b31b7505d9bef91f13
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,7 +34,11 @@ import java.util.Map;
 @RequestMapping("${api.prefix}/users")
 public class UserController {
     private final UserService userService;
+<<<<<<< HEAD
     private final LocalizationUtils localizationUtils;
+=======
+    private final UserRepository userRepository;
+>>>>>>> dffb0e7f4cd30063576ab2b31b7505d9bef91f13
 
 
     @PostMapping("/register")
@@ -45,6 +58,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
+<<<<<<< HEAD
     public ResponseEntity<LoginResponse> login(@Valid @RequestBody UserLoginDTO userLoginDTO
                                               ) {
         try {
@@ -58,11 +72,22 @@ public class UserController {
             return ResponseEntity.badRequest().body(LoginResponse.builder()
                     .message(localizationUtils.getLocalizationMessage(MessageKeys.LOGIN_FAILED,e.getMessage()))
                     .build());
+=======
+    public ResponseEntity<?> login(@RequestBody UserDTO userDTO){
+        try{
+            return ResponseEntity.ok(userService.login(userDTO.getPhoneNumber(), userDTO.getPassword()));
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+>>>>>>> dffb0e7f4cd30063576ab2b31b7505d9bef91f13
         }
     }
 
     @PostMapping("/refreshToken")
+<<<<<<< HEAD
     public ResponseEntity<?> refreshToken(@RequestBody UserDTO userDTO) {
+=======
+    public ResponseEntity<?> refreshToken(@RequestBody UserDTO userDTO){
+>>>>>>> dffb0e7f4cd30063576ab2b31b7505d9bef91f13
         try {
             return ResponseEntity.ok(userService.refreshToken(userDTO));
         } catch (Exception e) {

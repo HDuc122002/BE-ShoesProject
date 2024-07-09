@@ -42,7 +42,11 @@ UserService implements IUserService {
                 .googleAccountId(userDTO.getGoogleAccountId())
                 .role(userDTO.getRole())
                 .build();
+<<<<<<< HEAD
         if (!userDTO.getPassword().equals(userDTO.getRetypePassword())) {
+=======
+        if (!userDTO.getPassword().equals(userDTO.getRetypePassword())){
+>>>>>>> dffb0e7f4cd30063576ab2b31b7505d9bef91f13
             throw new InvalidParamException("Wrong retype password");
         }
         return userRepository.save(newUser);
@@ -50,12 +54,21 @@ UserService implements IUserService {
 
 
     @Override
+<<<<<<< HEAD
     public String login(String phoneNumber, String password) throws Exception {
         User user = userRepository.findByPhoneNumber(phoneNumber)
                 .orElseThrow(() -> new DataNotFoundException("Invalid phone number / password"));
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                         phoneNumber, password
                 )
+=======
+    public String login(String phoneNumber, String password) throws Exception{
+        User user = userRepository.findByPhoneNumber(phoneNumber)
+                .orElseThrow(() -> new DataNotFoundException("Invalid phone number / password"));
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+            phoneNumber,password
+            )
+>>>>>>> dffb0e7f4cd30063576ab2b31b7505d9bef91f13
         );
         String token = jwtTokenUtil.generateAccessToken(user);
         return token;

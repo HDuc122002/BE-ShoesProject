@@ -2,6 +2,7 @@ package com.project.ShoesProject.controller;
 
 import com.project.ShoesProject.dto.CategoryDTO;
 import com.project.ShoesProject.entity.Category;
+<<<<<<< HEAD
 import com.project.ShoesProject.response.UpdateCategoryResponse;
 import com.project.ShoesProject.service.Impl.CategoryService;
 import com.project.ShoesProject.utils.LocalizationUtils;
@@ -16,15 +17,27 @@ import org.springframework.web.servlet.LocaleResolver;
 
 import java.util.List;
 import java.util.Locale;
+=======
+import com.project.ShoesProject.service.Impl.CategoryService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+>>>>>>> dffb0e7f4cd30063576ab2b31b7505d9bef91f13
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("${api.prefix}/categories")
 public class CategoryController {
     private final CategoryService categoryService;
+<<<<<<< HEAD
     private final LocaleResolver localeResolver;
     private final MessageSource messageSource;
     private final LocalizationUtils localizationUtils;
+=======
+>>>>>>> dffb0e7f4cd30063576ab2b31b7505d9bef91f13
 
     @GetMapping("")
     public List<Category> getListCategory() {
@@ -51,6 +64,7 @@ public class CategoryController {
     }
 
     @PutMapping("/update/{id}")
+<<<<<<< HEAD
     public ResponseEntity<UpdateCategoryResponse> update(@Valid @RequestBody CategoryDTO categoryDTO, @PathVariable Long id,
     HttpServletRequest request){
         try {
@@ -63,6 +77,14 @@ public class CategoryController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(UpdateCategoryResponse.builder()
                             .message(e.getMessage())
                     .build());
+=======
+    public ResponseEntity<?> update(@RequestBody CategoryDTO categoryDTO,@PathVariable Long id){
+        try {
+            categoryService.update(categoryDTO,id);
+            return ResponseEntity.ok().body("Category Updated successfully");
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+>>>>>>> dffb0e7f4cd30063576ab2b31b7505d9bef91f13
         }
     }
 
