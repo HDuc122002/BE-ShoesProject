@@ -8,32 +8,22 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
-<<<<<<< HEAD
-import org.springframework.security.config.Customizer;
-=======
->>>>>>> dffb0e7f4cd30063576ab2b31b7505d9bef91f13
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-<<<<<<< HEAD
-import org.springframework.security.config.annotation.web.configurers.CorsConfigurer;
-=======
->>>>>>> dffb0e7f4cd30063576ab2b31b7505d9bef91f13
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-<<<<<<< HEAD
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
 import java.util.List;
-=======
->>>>>>> dffb0e7f4cd30063576ab2b31b7505d9bef91f13
+
 
 @Configuration
 @EnableWebSecurity
@@ -49,10 +39,8 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         return http
-<<<<<<< HEAD
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-=======
->>>>>>> dffb0e7f4cd30063576ab2b31b7505d9bef91f13
+
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
                         request -> {
@@ -112,7 +100,6 @@ public class WebSecurityConfig {
     }
 
     @Bean
-<<<<<<< HEAD
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(List.of("*"));
@@ -125,8 +112,6 @@ public class WebSecurityConfig {
     }
 
     @Bean
-=======
->>>>>>> dffb0e7f4cd30063576ab2b31b7505d9bef91f13
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
